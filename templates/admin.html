@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Charchaa — Control Center</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .admin-container { max-width: 1400px; margin: 0 auto; padding: 60px 24px; }
+        .admin-grid { display: grid; grid-template-columns: 1.8fr 1.2fr; gap: 40px; }
+        
+        .admin-card { 
+            background: var(--card-fill); 
+            border: 1px solid var(--border-stroke); 
+            padding: 32px;
+            box-shadow: 8px 8px 0px var(--text-primary);
+        }
+
+        .admin-card h3 { 
+            font-family: var(--font-heading); 
+            font-size: 1.75rem; 
+            margin-bottom: 24px; 
+            border-bottom: 1px solid var(--border-stroke);
+            padding-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 16px 8px; text-align: left; border-bottom: 1px solid var(--border-subtle); }
+        th { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6; font-weight: 700; }
+        
+        tr:hover td { background-color: var(--bg-subtle); }
+
+        .item-name { font-weight: 600; color: var(--text-primary); font-size: 0.95rem; }
+        .item-price { font-family: var(--font-heading); color: var(--accent-color); font-size: 1.1rem; }
+
+        .toggle-btn { 
+            padding: 8px 12px; 
+            font-size: 0.65rem; 
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: var(--transition-smooth);
+            border: 1px solid var(--border-stroke);
+            cursor: pointer;
+            width: 100%;
+            max-width: 120px;
+            text-align: center;
+        }
+
+        .available { background: #2e7d32; color: white; border-color: #2e7d32; }
+        .available:hover { background: #1b5e20; box-shadow: 4px 4px 0px var(--text-primary); transform: translate(-2px, -2px); }
+        
+        .unavailable { background: var(--accent-color); color: white; border-color: var(--accent-color); }
+        .unavailable:hover { background: #a04b32; box-shadow: 4px 4px 0px var(--text-primary); transform: translate(-2px, -2px); }
+
+        .status-pill { padding: 4px 8px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; border: 1px solid var(--border-stroke); }
+        
+        @media (max-width: 1024px) {
+            .admin-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body style="background: var(--bg-primary);">
+    <div class="admin-container">
+        <header style="margin-bottom: 64px; padding-bottom: 24px;">
+            <h1 class="section-title" style="margin-bottom: 8px;">Control Center</h1>
+            <p style="text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem; opacity: 0.7;">Managing the Charchaa Experience Matrix</p>
+        </header>
+
+        <div class="admin-grid">
+            <div class="admin-card">
+                <h3>Active Reservations</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Guest</th>
+                            <th>Contact</th>
+                            <th>Date/Time</th>
+                            <th>Session</th>
+                            <th>Created</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for res in reservations %}
+                        <tr>
+                            <td><strong>{{ res.name }}</strong> ({{ res.guest_count }})</td>
+                            <td>{{ res.phone }}</td>
+                            <td>{{ res.date }} @ {{ res.time_slot }}</td>
+                            <td><span class="status-pill">{{ res.session_type }}</span></td>
+                            <td style="opacity: 0.6; font-size: 0.8rem;">{{ res.created_at }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="admin-card">
+                <h3>Inventory Availability</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Price</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in menu_items %}
+                        <tr>
+                            <td class="item-name">{{ item.name }}</td>
+                            <td class="item-price">₹{{ item.price }}</td>
+                            <td>
+                                <button 
+                                    data-id="{{ item._id }}"
+                                    data-new-status="{{ 'false' if item.is_available else 'true' }}"
+                                    onclick="toggleItem(this.dataset.id, this.dataset.newStatus === 'true')"
+                                    class="toggle-btn {{ 'available' if item.is_available else 'unavailable' }}">
+                                    {{ 'In Stock' if item.is_available else 'Out of Stock' }}
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function toggleItem(id, newStatus) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const token = urlParams.get('token');
+
+            try {
+                const response = await fetch('/api/menu/toggle', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        id: id,
+                        available: newStatus,
+                        token: token
+                    })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    window.location.reload();
+                } else {
+                    alert("Error updating status: " + result.message);
+                }
+            } catch (err) {
+                alert("Network error occurred.");
+            }
+        }
+    </script>
+</body>
+</html>

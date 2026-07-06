@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charchaa — Speciality Coffee | Where Every Sip Starts a चर्चा</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- Local Business Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CoffeeShop",
+      "name": "Charchaa Speciality Coffee",
+      "image": "https://charchaacoffee.co/static/images/hero-preview.jpg",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Pal Chowk, Rail Toli",
+        "addressLocality": "Gondia",
+        "addressRegion": "MH",
+        "postalCode": "441614",
+        "addressCountry": "IN"
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": 21.4589, "longitude": 80.1947 },
+      "openingHoursSpecification": { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], "opens": "17:00", "closes": "00:00" },
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "128" }
+    }
+    </script>
+</head>
+<body>
+    <a href="#menu" class="skip-link" style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;">Skip to content</a>
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="#" class="brand-logo">Charchaa <span class="hindi-script">(चर्चा)</span></a>
+            
+            <nav class="nav-menu" id="navMenu">
+                <a href="#menu" class="nav-link">Menu</a>
+                <a href="#experience" class="nav-link">The Experience</a>
+                <a href="#reviews" class="nav-link">Reviews</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <button id="themeToggle" class="theme-switcher" aria-label="Toggle Dark Mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </nav>
+
+            <button class="hamburger" id="hamburgerToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-content reveal">
+                <span class="hero-badge">Gondia's Premium Third-Wave Coffee Spot</span>
+                <h1 class="hero-headline">Where Every Sip starts a ‘चर्चा’ ☕️</h1>
+                <p class="hero-subheadline">Gondia's premier 100% vegetarian speciality coffee spot. Cute, comfy, and open late.</p>
+                <div class="hero-cta-group">
+                    <a href="#menu" class="btn btn-primary">Explore Our Menu</a>
+                    <button id="openBooking" class="btn btn-secondary">Reserve a चर्चा Seat</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="experience-section" id="experience">
+            <div class="section-container">
+                <h2 class="section-title reveal">The Experience Grid</h2>
+                <div class="experience-grid">
+                    
+                    <div class="experience-card reveal">
+                        <div class="card-icon">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <h3>100% Pure Vegetarian</h3>
+                        <p>A completely meat-free menu of artisanal treatments and coffee pairings crafted for refined palates.</p>
+                    </div>
+
+                    <div class="experience-card reveal">
+                        <div class="card-icon">
+                            <i class="fa-solid fa-cloud-moon"></i>
+                        </div>
+                        <h3>Late-Night Spot</h3>
+                        <p>Operating strictly from 5:00 PM to 12:00 AM midnight. The perfect environment for night owls and late conversations.</p>
+                    </div>
+
+                    <div class="experience-card reveal">
+                        <div class="card-icon">
+                            <i class="fa-solid fa-paw"></i>
+                        </div>
+                        <h3>Pet-Friendly Space</h3>
+                        <p>Dogs are warmly welcomed both inside and outside the cafe. Bring your furry friends along for your coffee breaks.</p>
+                    </div>
+
+                    <div class="experience-card reveal">
+                        <div class="card-icon">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+                        <h3>Live Music & Performances</h3>
+                        <p>Weekly acoustic performances and creative local sessions setting a relaxed, sophisticated evening atmosphere.</p>
+                    </div>
+
+                    <div class="experience-card reveal experience-card-wide">
+                        <div class="card-icon">
+                            <i class="fa-solid fa-motorcycle"></i>
+                        </div>
+                        <h3>Complete Convenience</h3>
+                        <p>Offering a dedicated free parking lot, stress-free street parking spaces, and an architectural, wheelchair-accessible seating layout plan.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="menu-section" id="menu">
+            <div class="section-container">
+                <h2 class="section-title reveal">The Artisanal Menu</h2>
+
+                <!-- Custom Drink Simulator -->
+                <div class="brew-simulator reveal">
+                    <div class="simulator-controls">
+                        <h3>Brew Customizer</h3>
+                        <div class="sim-controls-grid">
+                            <div class="sim-group">
+                                <label>Base</label>
+                                <select id="simBase">
+                                    <option value="Espresso">Espresso Shot</option>
+                                    <option value="Cold Brew">18h Cold Brew</option>
+                                </select>
+                            </div>
+                            <div class="sim-group">
+                                <label>Milk Type</label>
+                                <select id="simMilk">
+                                    <option value="None">No Milk (Black)</option>
+                                    <option value="Regular">Steamed Dairy</option>
+                                    <option value="Oat">Creamy Oat</option>
+                                </select>
+                            </div>
+                            <div class="sim-group">
+                                <label>Flavor Shot</label>
+                                <select id="simFlavor">
+                                    <option value="None">None</option>
+                                    <option value="Caramel">Caramel</option>
+                                    <option value="Hazelnut">Hazelnut</option>
+                                    <option value="Vanilla">Vanilla</option>
+                                </select>
+                            </div>
+                            <div class="sim-group">
+                                <label>Sweetener</label>
+                                <select id="simSweet">
+                                    <option value="None">None</option>
+                                    <option value="Sugar">White Sugar</option>
+                                    <option value="Jaggery">Jaggery</option>
+                                </select>
+                            </div>
+                            <div class="sim-group">
+                                <label>Cloud Layer</label>
+                                <select id="simFoam">
+                                    <option value="None">Standard</option>
+                                    <option value="Vanilla">Vanilla Foam</option>
+                                    <option value="Lavender">Lavender Foam</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="simulator-preview">
+                        <div class="preview-receipt">
+                            <p class="receipt-header">Brew Concept</p>
+                            <div id="simResult" class="receipt-content">Espresso + None + Standard</div>
+                            <span class="receipt-footer">Share this with your barista!</span>
+                        </div>
+                    </div>
+                </div>
+                
+                {% for category, items in menu.items() %}
+                <div class="menu-category-block reveal">
+                    <h3 class="category-heading">{{ category }}</h3>
+                    <div class="menu-grid">
+                        {% for item in items %}
+                        <div class="menu-item {{ 'out-of-stock' if not item.is_available else '' }}">
+                            <div class="menu-item-main">
+                                <span class="menu-item-name">{{ item.name }}</span>
+                                <span class="menu-item-line"></span>
+                                <span class="menu-item-price">₹{{ item.price }}</span>
+                            </div>
+                            <p class="menu-item-description">{{ item.description }}</p>
+                            {% if not item.is_available %}
+                            <span class="availability-badge">Out of Stock</span>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="reviews-section" id="reviews">
+            <div class="section-container">
+                <!-- Elfsight Google Reviews | Untitled Google Reviews -->
+                <script src="https://elfsightcdn.com/platform.js" async></script>
+                <div class="elfsight-app-48af64ff-031b-4de9-a37e-ff3733db0d09" data-elfsight-app-lazy></div>
+            </div>
+        </section>
+
+        <section class="faq-section" id="faq">
+            <div class="section-container">
+                <h2 class="section-title reveal">Frequently Asked Questions</h2>
+                <div class="faq-accordion-group">
+                    
+                    <div class="faq-item reveal">
+                        <button class="faq-trigger" aria-expanded="false">
+                            <span>Which digital payment methods do you accept at the counter?</span>
+                            <span class="faq-icon"></span>
+                        </button>
+                        <div class="faq-content">
+                            <p>We completely support cashless payments for complete convenience. You can securely settle your check utilizing Google Pay, standard UPI, major credit/debit cards, as well as regular currency cash payments.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item reveal">
+                        <button class="faq-trigger" aria-expanded="false">
+                            <span>What is your reservation policy for group meetups or study hours?</span>
+                            <span class="faq-icon"></span>
+                        </button>
+                        <div class="faq-content">
+                            <p>While we operate primarily on a walk-in framework to maximize open neighborhood vibes, we do facilitate strategic seating reservations for friendly match meetups, digital work focus setups, or quiet study hours during our opening windows. Contact us directly to orchestrate your time slot.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item reveal">
+                        <button class="faq-trigger" aria-expanded="false">
+                            <span>Can you confirm if everything served on the menu is 100% vegetarian?</span>
+                            <span class="faq-icon"></span>
+                        </button>
+                        <div class="faq-content">
+                            <p>Yes, absolutely. Charchaa is proudly a 100% pure vegetarian establishment. All of our curated food pairings, architectural espresso formulations, syrups, foams, and signature mocktails are meticulously monitored to ensure zero cross-contamination with non-vegetarian items.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" id="contact">
+        <div class="footer-container">
+            <div class="footer-brand-info">
+                <h2 class="footer-logo">Charchaa (चर्चा)</h2>
+                <p class="footer-tagline">"Where Every Sip starts a ‘चर्चा’ ☕️"</p>
+            </div>
+            
+            <div class="footer-details-grid">
+                <div class="footer-block">
+                    <h4>Find Our Space</h4>
+                    <p class="address-text">Pal Chowk, Rail Toli,<br>Gondia, Maharashtra 441614</p>
+                </div>
+                
+                <div class="footer-block">
+                    <h4>Operational Hours</h4>
+                    <p>Open Daily Evening Routine</p>
+                    <p class="hours-highlight">5:00 PM - 12:00 AM Midnight</p>
+                </div>
+
+                <div class="footer-block">
+                    <h4>Initiate a Conversation</h4>
+                    <p><a href="tel:09518761875" class="footer-link contact-tel">Call: +91 95187 61875</a></p>
+                    <p><a href="https://www.instagram.com/charchacoffee.co/" target="_blank" rel="noopener noreferrer" class="footer-link instagram-link">Follow us @charchacoffee.co</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Charchaa Speciality Coffee. All Rights Reserved. Crafted with Premium Architecture.</p>
+        </div>
+    </footer>
+
+    <div class="fab-container">
+        <a href="tel:09518761875" class="fab-main" aria-label="Call Charchaa Coffee">
+            <i class="fa-solid fa-phone"></i>
+        </a>
+    </div>
+
+    <!-- Reservation Modal -->
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal-card">
+            <button class="modal-close" id="closeBooking">&times;</button>
+            <h2 class="section-title">Book a Session</h2>
+            <form id="reservationForm">
+                <div class="form-grid">
+                    <div class="form-field">
+                        <label>Name</label>
+                        <input type="text" name="name" required placeholder="John Doe">
+                    </div>
+                    <div class="form-field">
+                        <label>Phone</label>
+                        <input type="tel" name="phone" required placeholder="+91 00000 00000">
+                    </div>
+                    <div class="form-field">
+                        <label>Date</label>
+                        <input type="date" name="date" required id="bookingDate">
+                    </div>
+                    <div class="form-field">
+                        <label>Time (5 PM - 12 AM)</label>
+                        <input type="time" name="time_slot" required min="17:00" max="23:59">
+                    </div>
+                    <div class="form-field">
+                        <label>Guests</label>
+                        <input type="number" name="guest_count" required min="1" max="12" value="2">
+                    </div>
+                    <div class="form-field">
+                        <label>Session Type</label>
+                        <select name="session_type">
+                            <option value="Casual Catchup">Casual Catchup</option>
+                            <option value="Study/Work">Study/Work Focus</option>
+                            <option value="Friendly Match">Friendly Match</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-top: 32px; width: 100%;">Confirm Reservation</button>
+                <p id="formFeedback" class="form-feedback"></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
